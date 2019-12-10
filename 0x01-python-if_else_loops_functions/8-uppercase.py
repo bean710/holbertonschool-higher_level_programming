@@ -13,8 +13,14 @@ def toupper(c):
 
 
 def uppercase(str):
-    for c in range(len(str)):
-        if (c == len(str) - 1):
+    strlen = len(str)
+
+    if (strlen == 0):
+        print("")
+        return
+
+    for c in range(strlen):
+        if (c == strlen - 1):
             print("{}".format(toupper(str[c])))
         else:
             print("{}".format(toupper(str[c])), end="")
