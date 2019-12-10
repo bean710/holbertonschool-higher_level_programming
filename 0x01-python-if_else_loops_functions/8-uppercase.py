@@ -5,10 +5,12 @@ def islower(c):
         return True
     return False
 
+
 def toupper(c):
     if (islower(c)):
         return chr(ord(c) - 32)
     return (c)
+
 
 def uppercase(str):
     for c in range(len(str)):
