@@ -17,10 +17,7 @@ def uppercase(str):
 
     if (strlen == 0):
         print("")
-        return
 
     for c in range(strlen):
-        if (c == strlen - 1):
-            print("{}".format(toupper(str[c])))
-        else:
-            print("{}".format(toupper(str[c])), end="")
+        print("{}".format(toupper(str[c])), end=("\n" if c == strlen - 1
+                                                 else ""))
