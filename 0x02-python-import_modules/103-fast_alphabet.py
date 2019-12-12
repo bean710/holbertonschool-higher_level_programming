@@ -1,2 +1,3 @@
 #!/usr/bin/python3
-print(chr(65) + chr(66) + chr(67) + chr(66))
+from string import ascii_uppercase
+print(ascii_uppercase)
