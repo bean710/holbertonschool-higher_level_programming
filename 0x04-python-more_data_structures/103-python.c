@@ -1,6 +1,10 @@
 #include <Python.h>
 #include <stdio.h>
 
+/**
+ * print_python_bytes - Prints the bytes of a python bytes object
+ * @p: Pointer to the Python object
+ */
 void print_python_bytes(PyObject *p)
 {
 	char *bytes;
@@ -28,6 +32,10 @@ void print_python_bytes(PyObject *p)
 	printf("\n");
 }
 
+/**
+ * print_python_list - Prints a python list object
+ * @p: Pointer to the Python object
+ */
 void print_python_list(PyObject *p)
 {
 	int size, alloc;
