@@ -21,7 +21,7 @@ void print_python_bytes(PyObject *p)
 
 	printf("  trying string: %s\n", bytes);
 
-	size = size > 10 ? 10 : size;
+	size = size >= 10 ? 10 : size + 1;
 	printf("  first %d bytes: ", size);
 	for (i = 0; i < size; ++i)
 		printf("%02hhx ", bytes[i]);
@@ -33,6 +33,8 @@ void print_python_list(PyObject *p)
 	int size, alloc;
 	PyListObject *l;
 	int i;
+	const char *type;
+	PyObject *item;
 
 	l = (PyListObject *)p;
 
@@ -45,7 +47,10 @@ void print_python_list(PyObject *p)
 
 	for (i = 0; i < size; ++i)
 	{
-		printf("Element %d: %s\n", i,
-				(((PyObject *)(l->ob_item[i]))->ob_type)->tp_name);
+		item = (PyObject *)l->ob_item[i];
+		type = (item->ob_type)->tp_name;
+		printf("Element %d: %s\n", i, type);
+		if (strcmp(type, "bytes") == 0)
+			print_python_bytes(item);
 	}
 }
