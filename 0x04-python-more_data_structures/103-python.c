@@ -1,7 +1,32 @@
 #include <Python.h>
 #include <stdio.h>
 
+void print_python_bytes(PyObject *p)
+{
+	char *bytes;
+	int size, i;
 
+	printf("[.] bytes object info\n");
+
+	if (!PyBytes_Check(p))
+	{
+		printf("  [ERROR] Invalid Bytes Object\n");
+		return;
+	}
+
+	size = (int)PyBytes_Size(p);
+	printf("  size: %d\n", size);
+	
+	bytes = PyBytes_AsString(p);
+
+	printf("  trying string: %s\n", bytes);
+
+	size = size > 10 ? 10 : size;
+	printf("  first %d bytes: ", size);
+	for (i = 0; i < size; ++i)
+		printf("%02hhx ", bytes[i]);
+	printf("\n");
+}
 
 void print_python_list(PyObject *p)
 {
