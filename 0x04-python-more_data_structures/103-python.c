@@ -28,7 +28,11 @@ void print_python_bytes(PyObject *p)
 	size = size >= 10 ? 10 : size + 1;
 	printf("  first %d bytes: ", size);
 	for (i = 0; i < size; ++i)
-		printf("%02hhx ", bytes[i]);
+	{
+		printf("%02hhx", bytes[i]);
+		if (i != size - 1)
+			printf(" ");
+	}
 	printf("\n");
 }
 
