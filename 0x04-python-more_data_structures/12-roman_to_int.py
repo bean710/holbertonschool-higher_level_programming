@@ -17,19 +17,16 @@ def roman_to_int(roman_string):
         elif i == "M":
             nums.append(1000)
 
-    fnums = []
-    i = len(nums) - 1
-    while i >= 0:
-        ct = 0
-        c = nums[i]
-        for j in range(i - 1, -1, -1):
-            if (nums[j] < nums[i]):
-                c -= nums[j]
-                ct += 1
-            else:
-                break
-        i -= ct
-        fnums.append(c)
-        i -= 1
+    tot = 0
+    while nums:
+        if len(nums) == 1:
+            tot += nums[0]
+            break
+        if (nums[0] >= nums[1]):
+            tot += nums[0]
+            nums = nums[1:]
+        else:
+            tot += nums[1] - nums[0]
+            nums = nums[2:]
 
-    return sum(fnums)
+    return tot
