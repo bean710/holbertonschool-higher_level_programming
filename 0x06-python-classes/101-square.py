@@ -62,7 +62,7 @@ class Square:
         for x in range(self.position[1]):
             out += "\n"
         for x in range(self.size):
-            out += " " * self.position[0] + "#" * self.size +
-            ("\n" if x is not self.size - 1 else "")
+            out += " " * self.position[0] + "#" * self.size +\
+                ("\n" if x is not self.size - 1 else "")
 
         return out
