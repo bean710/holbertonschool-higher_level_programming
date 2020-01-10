@@ -3,6 +3,7 @@
     This file contains the class for a basic square
 """
 
+
 class Square:
     """Class for a basic square"""
 
