@@ -74,3 +74,9 @@ Import module:
 	Traceback (most recent call last):
 		...
 	TypeError: div must be a number
+
+	>>> matrix = [[2, 3, 4], 4]
+	>>> matrix_divided(matrix, 3)
+	Traceback (most recent call last):
+		...
+	TypeError: matrix must be a matrix (list of lists) of integers/floats
