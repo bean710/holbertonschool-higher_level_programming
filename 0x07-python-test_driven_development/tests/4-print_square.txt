@@ -1,0 +1,54 @@
+The ``4-print_square`` module
+======================
+
+Using ``print_square``
+-------------------
+
+Import module:
+
+    >>> ps = __import__('4-print_square').print_square
+
+
+	>>> ps(4)
+	####
+	####
+	####
+	####
+
+	>>> ps(2)
+	##
+	##
+
+	>>> ps(-3)
+	Traceback (most recent call last):
+		...
+	ValueError: size must be >= 0
+
+
+	>>> ps("foo")
+	Traceback (most recent call last):
+		...
+	TypeError: size must be an integer
+
+
+	>>> ps(-4.2)
+	Traceback (most recent call last):
+		...
+	TypeError: size must be an integer
+
+
+	>>> ps(-4)
+	Traceback (most recent call last):
+		...
+	ValueError: size must be >= 0
+
+
+	>>> ps(4.2)
+	Traceback (most recent call last):
+		...
+	TypeError: size must be an integer
+
+
+	>>> ps(0)
+	<BLANKLINE>
+
