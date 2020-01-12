@@ -1,0 +1,29 @@
+The ``3-say_my_name`` module
+======================
+
+Using ``say_my_name``
+-------------------
+
+Import module:
+
+    >>> smn = __import__('3-say_my_name').say_my_name
+
+
+	>>> smn("Ben", "Keener")
+	My name is Ben Keener
+
+	>>> smn("Ben")
+	My name is Ben 
+
+	>>> smn(12)
+	Traceback (most recent call last):
+		...
+	TypeError: first_name must be a string
+
+	>>> smn("Ben", 12)
+	Traceback (most recent call last):
+		...
+	TypeError: last_name must be a string
+
+	>>> smn("")
+	My name is  
