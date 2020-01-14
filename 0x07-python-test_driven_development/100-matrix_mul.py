@@ -8,6 +8,7 @@ or
 for verbose mode.
 """
 
+
 def matrix_mul(m_a, m_b):
     """Matrix multiplication function
 
@@ -50,7 +51,7 @@ def matrix_mul(m_a, m_b):
     for x in range(len(m_a)):
         nl = []
         for y in range(len(m_b[0])):
-            tmp = 0;
+            tmp = 0
             for z in range(len(m_a[0])):
                 tmp += m_a[x][z] * m_b[z][y]
             nl.append(tmp)
