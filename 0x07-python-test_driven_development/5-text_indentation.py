@@ -25,10 +25,12 @@ def text_indentation(text):
         print("")
         return
 
+    bchars = [".", "?", ":"]
+
     last = 0
     fin = []
     for c in range(len(text)):
-        if text[c] is "." or text[c] is "?" or text[c] is ":":
+        if text[c] in bchars:
             fin.append(text[last:c + 1])
             last = c + 1
 
