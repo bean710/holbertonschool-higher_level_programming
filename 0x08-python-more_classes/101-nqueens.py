@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import sys
 
 
@@ -43,7 +44,14 @@ def main():
     if len(sys.argv) != 2:
         print("Usage: nqueens N")
         sys.exit(1)
-    num = int(sys.argv[1])
+    try:
+        num = int(sys.argv[1])
+    except ValueError:
+        print("N must be a number")
+        sys.exit(1)
+    if num < 4:
+        print("N must be at least 4")
+        sys.exit(1)
     board = [[0] * num for x in range(num)]
     sols = []
     nqueens(board, 0, sols)
