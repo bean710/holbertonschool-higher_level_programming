@@ -27,3 +27,8 @@ Import module:
 
 	>>> smn("")
 	My name is  
+
+	>>> smn()
+	Traceback (most recent call last):
+		...
+	TypeError: say_my_name() missing 1 required positional argument: 'first_name'
