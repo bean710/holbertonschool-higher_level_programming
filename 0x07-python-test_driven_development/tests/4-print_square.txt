@@ -50,5 +50,3 @@ Import module:
 
 
 	>>> ps(0)
-	<BLANKLINE>
-
