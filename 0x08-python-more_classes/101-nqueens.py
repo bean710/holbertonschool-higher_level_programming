@@ -1,8 +1,10 @@
 #!/usr/bin/python3
+"""This module has functions for the infamous N-queens problem"""
 import sys
 
 
 def checkPos(board, pos):
+    """Function to check if a position is valid for a queen"""
     for x in range(pos[0]):
         if board[x][pos[1]] == 1:
             return False
@@ -19,6 +21,7 @@ def checkPos(board, pos):
 
 
 def nqueens(board, row, solutions):
+    """Recursive function to try board layouts"""
     if row == len(board):
         solutions.append(conv(board))
 
@@ -30,6 +33,7 @@ def nqueens(board, row, solutions):
 
 
 def conv(sol):
+    """Function to convert styles of board descriptions"""
     fin = []
     for x in range(len(sol)):
         fin.append([])
@@ -42,6 +46,7 @@ def conv(sol):
 
 
 def main():
+    """Main function to check args and call recursion"""
     if len(sys.argv) != 2:
         print("Usage: nqueens N")
         sys.exit(1)
