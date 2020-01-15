@@ -52,3 +52,13 @@ Import module:
 
 	>>> add_integer(2.5)
 	100
+
+	>>> add_integer(float("nan"), 21)
+	Traceback (most recent call last):
+		...
+	TypeError: a must be an integer
+
+	>>> add_integer(float("inf"), 22)
+	Traceback (most recent call last):
+		...
+	TypeError: a must be an integer
