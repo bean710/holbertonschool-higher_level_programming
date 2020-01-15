@@ -58,6 +58,16 @@ Import module:
 		...
 	TypeError: a must be an integer
 
+	>>> add_integer(21, float("nan"))
+	Traceback (most recent call last):
+		...
+	TypeError: b must be an integer
+
+	>>> add_integer(22, float("inf"))
+	Traceback (most recent call last):
+		...
+	TypeError: b must be an integer
+
 	>>> add_integer(float("inf"), 22)
 	Traceback (most recent call last):
 		...
