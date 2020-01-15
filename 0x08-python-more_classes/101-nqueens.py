@@ -21,13 +21,13 @@ def checkPos(board, pos):
 def nqueens(board, row, solutions):
     if row == len(board):
         solutions.append(conv(board))
-        #solutions.append([x[:] for x in board])
 
     for x in range(len(board)):
-        if checkPos(board, (row, x)) == True:
+        if checkPos(board, (row, x)) is True:
             board[row][x] = 1
             nqueens(board, row + 1, solutions)
             board[row][x] = 0
+
 
 def conv(sol):
     fin = []
@@ -39,6 +39,7 @@ def conv(sol):
                 fin[x].append(y)
                 break
     return fin
+
 
 def main():
     if len(sys.argv) != 2:
