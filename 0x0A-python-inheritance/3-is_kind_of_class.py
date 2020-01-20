@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """This module contains a function to determine if an object is an instance of
 a class or any class which inherits it"""
 

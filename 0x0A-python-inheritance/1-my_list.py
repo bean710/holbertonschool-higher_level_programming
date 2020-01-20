@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """This module contains a class that inherits `list` and adds a function to
 print the list sorted in ascending order"""
 

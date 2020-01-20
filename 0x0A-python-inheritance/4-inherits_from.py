@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """This module contains a function that checks if the type of an object is a
 subclass (directly or indirectly) of an other class"""
 

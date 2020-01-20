@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """This module contains a function which tells if an object is of exactly the
 same class as the second argument"""
 
