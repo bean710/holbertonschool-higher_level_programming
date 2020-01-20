@@ -1,0 +1,11 @@
+    >>> ikoc = __import__("3-is_kind_of_class").is_kind_of_class
+
+    >>> a = 1
+    >>> ikoc(a, int.__name__)
+    True
+
+    >>> ikoc(a, float.__name__)
+    False
+
+    >>> ikoc(a, object.__name__)
+    True
