@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """Module which contians a rectange class based off of the BaseGeometry
 class"""
 BaseGeometry = __import__("7-base_geometry").BaseGeometry
