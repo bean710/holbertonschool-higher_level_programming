@@ -4,18 +4,18 @@ class being compared against
 	>>> isc = __import__("2-is_same_class").is_same_class
 
 	>>> a = 1
-	>>> isc(a, int.__name__)
+	>>> isc(a, int)
 	True
 
-	>>> isc(a, float.__name__)
+	>>> isc(a, float)
 	False
 
-	>>> isc(a, object.__name__)
+	>>> isc(a, object)
 	False
 
 	>>> class Foo(int):
 	... 	pass
 
 	>>> b = Foo()
-	>>> isc(a, type(b).__name__)
+	>>> isc(a, type(b))
 	False
