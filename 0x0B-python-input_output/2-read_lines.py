@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """This module contains a function which prints a given number of lines from a
 given file"""
 
