@@ -32,9 +32,9 @@ class Student:
             return {k: v for k, v in self.__dict__.items() if k in attrs}
 
     def reload_from_json(self, json):
-        """Loads Student attributes from `json` JSON object
+        """Loads Student attributes from dictionary
 
         Args:
-            json: The JSON string to load the data from
+            json: The dictionary to load data from
         """
-        self.__dict__ = json
+        self.__dict__.update(json)
