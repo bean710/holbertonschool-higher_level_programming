@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """This module contains a function which returns a class' dictionary as a JSON
 serializable object"""
-import json
 
 
 def class_to_json(obj):
