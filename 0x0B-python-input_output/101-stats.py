@@ -19,10 +19,14 @@ if __name__ == "__main__":
                 codes[sep[-2]] += 1
 
             lnum += 1
-            if line is None or lnum % 10 == 0:
+            if lnum % 10 == 0:
                 print("File size: {}".format(fsize))
                 for k in sorted(codes):
                     print("{}: {}".format(k, codes[k]))
+
+        print("File size: {}".format(fsize))
+        for k in sorted(codes):
+            print("{}: {}".format(k, codes[k]))
 
     except (KeyboardInterrupt, SystemExit):
         print("File size: {}".format(fsize))
