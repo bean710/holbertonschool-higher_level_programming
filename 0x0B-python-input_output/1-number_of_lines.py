@@ -2,6 +2,7 @@
 """This module contains a function to count the number of lines in a given
 file"""
 
+
 def number_of_lines(filename=""):
     """This function returns the number of lines in a given file
 
