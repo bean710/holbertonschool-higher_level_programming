@@ -11,12 +11,16 @@ if __name__ == "__main__":
         for line in sys.stdin:
             sep = line.split(" ")
 
-            fsize += int(sep[-1])
+            if len(sep) >= 2:
+                try:
+                    fsize += int(sep[-1])
+                except:
+                    pass
 
-            if sep[-2] not in codes:
-                codes[sep[-2]] = 1
-            else:
-                codes[sep[-2]] += 1
+                if sep[-2] not in codes:
+                    codes[sep[-2]] = 1
+                else:
+                    codes[sep[-2]] += 1
 
             lnum += 1
             if lnum % 10 == 0:
