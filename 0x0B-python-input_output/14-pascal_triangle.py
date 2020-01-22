@@ -18,7 +18,7 @@ def pascal_recur(n, l):
         return l
     row = []
     for x in range(len(l[-1]) + 1):
-        row.append((l[-1][x - 1] if x - 1 >= 0 else 0)
-                   + (l[-1][x] if x < len(l[-1]) else 0))
+        row.append((l[-1][x - 1] if x - 1 >= 0 else 0) +
+                   (l[-1][x] if x < len(l[-1]) else 0))
     l.append(row)
     return pascal_recur(n - 1, l)
