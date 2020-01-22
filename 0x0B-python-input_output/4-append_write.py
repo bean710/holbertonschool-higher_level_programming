@@ -2,7 +2,7 @@
 """This module contains a function which appends given text to a given file"""
 
 
-def write_file(filename="", text=""):
+def append_write(filename="", text=""):
     """Appends `text` to `filename`
 
     Args:
