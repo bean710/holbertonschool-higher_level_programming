@@ -21,6 +21,10 @@ class Rectangle(Base):
         self.x = x
         self.y = y
 
+    def area(self):
+        """Gets the area of the rectangle"""
+        return self.width * self.height
+
     @property
     def x(self):
         """Getter for the private `x` attribute"""
