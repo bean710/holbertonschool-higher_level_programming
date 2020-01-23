@@ -19,7 +19,10 @@ class TestRectangleClass(unittest.TestCase):
         self.assertTrue(isinstance(a, Base))
 
     def test_init(self):
-        """Tests proper initialization"""
+        """Tests proper initialization
+
+        TODO: improper number of args
+        """
         a = Rectangle(1, 1)
         self.assertEqual(type(a), Rectangle)
         b = Rectangle(1, 1, 3)
@@ -78,3 +81,100 @@ class TestRectangleClass(unittest.TestCase):
         b.y = 5
         self.assertEqual(b.y, 5)
         self.assertEqual(b.x, 4)
+
+    def test_illegal_dimension_types(self):
+        """Tests for correct handling of illegal dimension attributes"""
+        with self.assertRaises(TypeError) as err:
+            Rectangle("foo", 1)
+            self.assertEqual(err.msg, "width must be an integer")
+
+        with self.assertRaises(TypeError) as err:
+            Rectangle(None, 1)
+            self.assertEqual(err.msg, "width must be an integer")
+
+        with self.assertRaises(TypeError) as err:
+            Rectangle(float("inf"), 1)
+            self.assertEqual(err.msg, "width must be an integer")
+
+        with self.assertRaises(TypeError) as err:
+            Rectangle(1, "foo")
+            self.assertEqual(err.msg, "height must be an integer")
+
+        with self.assertRaises(TypeError) as err:
+            Rectangle(1, None)
+            self.assertEqual(err.msg, "height must be an integer")
+
+        with self.assertRaises(TypeError) as err:
+            Rectangle(1, float("inf"))
+            self.assertEqual(err.msg, "height must be an integer")
+
+        with self.assertRaises(TypeError) as err:
+            Rectangle(None, float("inf"))
+            self.assertEqual(err.msg, "width must be an integer")
+
+    def test_illigal_dimension_values(self):
+        """Tests for correct handling of illegal dimension values"""
+        with self.assertRaises(ValueError) as err:
+            Rectangle(0, 5)
+            self.assertEqual(err.msg, "width must be > 0")
+
+        with self.assertRaises(ValueError) as err:
+            Rectangle(-9, 5)
+            self.assertEqual(err.msg, "width must be > 0")
+
+        with self.assertRaises(ValueError) as err:
+            Rectangle(5, 0)
+            self.assertEqual(err.msg, "height must be > 0")
+
+        with self.assertRaises(ValueError) as err:
+            Rectangle(5, -9)
+            self.assertEqual(err.msg, "height must be > 0")
+
+        with self.assertRaises(ValueError) as err:
+            Rectangle(-9, -10)
+            self.assertEqual(err.msg, "width must be > 0")
+
+    def test_illegal_coordinate_types(self):
+        """Tests for correct handling of illegal coordinate types"""
+        with self.assertRaises(TypeError) as err:
+            Rectangle(1, 1, x="foo")
+            self.assertEqual(err, "x must be an integer")
+
+        with self.assertRaises(TypeError) as err:
+            Rectangle(1, 1, x=None)
+            self.assertEqual(err, "x must be an integer")
+
+        with self.assertRaises(TypeError) as err:
+            Rectangle(1, 1, x=float("inf"))
+            self.assertEqual(err, "x must be an integer")
+
+        with self.assertRaises(TypeError) as err:
+            Rectangle(1, 1, y="foo")
+            self.assertEqual(err, "y must be an integer")
+
+        with self.assertRaises(TypeError) as err:
+            Rectangle(1, 1, y=None)
+            self.assertEqual(err, "y must be an integer")
+
+        with self.assertRaises(TypeError) as err:
+            Rectangle(1, 1, y=float("inf"))
+            self.assertEqual(err, "y must be an integer")
+
+        with self.assertRaises(TypeError) as err:
+            Rectangle(1, 1, x=None, y=float("inf"))
+            self.assertEqual(err, "x must be an integer")
+
+    def test_illegal_coordinate_values(self):
+        """Tests for correct handling of illegal coordinate values"""
+        with self.assertRaises(ValueError) as err:
+            Rectangle(1, 1, x=-1)
+            self.assertEqual(err, "x must be >=0")
+
+        with self.assertRaises(ValueError) as err:
+            Rectangle(1, 1, y=-1)
+            self.assertEqual(err, "y must be >=0")
+
+        with self.assertRaises(ValueError) as err:
+            Rectangle(1, 1, x=-5, y=-1)
+            self.assertEqual(err, "x must be >=0")
+
