@@ -25,6 +25,11 @@ class Rectangle(Base):
         """Gets the area of the rectangle"""
         return self.width * self.height
 
+    def display(self):
+        """Prints out the rectangle"""
+        for x in range(self.height):
+            print("#" * self.width)
+
     @property
     def x(self):
         """Getter for the private `x` attribute"""
