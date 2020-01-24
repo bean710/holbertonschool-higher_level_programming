@@ -84,99 +84,77 @@ class TestRectangleClass(unittest.TestCase):
 
     def test_illegal_dimension_types(self):
         """Tests for correct handling of illegal dimension attributes"""
-        with self.assertRaises(TypeError) as err:
+        with self.assertRaisesRegex(TypeError, "width must be an integer"):
             Rectangle("foo", 1)
-            self.assertEqual(err.msg, "width must be an integer")
 
-        with self.assertRaises(TypeError) as err:
+        with self.assertRaisesRegex(TypeError, "width must be an integer"):
             Rectangle(None, 1)
-            self.assertEqual(err.msg, "width must be an integer")
 
-        with self.assertRaises(TypeError) as err:
+        with self.assertRaisesRegex(TypeError, "width must be an integer"):
             Rectangle(float("inf"), 1)
-            self.assertEqual(err.msg, "width must be an integer")
 
-        with self.assertRaises(TypeError) as err:
+        with self.assertRaisesRegex(TypeError, "height must be an integer"):
             Rectangle(1, "foo")
-            self.assertEqual(err.msg, "height must be an integer")
 
-        with self.assertRaises(TypeError) as err:
+        with self.assertRaisesRegex(TypeError, "height must be an integer"):
             Rectangle(1, None)
-            self.assertEqual(err.msg, "height must be an integer")
 
-        with self.assertRaises(TypeError) as err:
+        with self.assertRaisesRegex(TypeError, "height must be an integer"):
             Rectangle(1, float("inf"))
-            self.assertEqual(err.msg, "height must be an integer")
 
-        with self.assertRaises(TypeError) as err:
+        with self.assertRaisesRegex(TypeError, "width must be an integer"):
             Rectangle(None, float("inf"))
-            self.assertEqual(err.msg, "width must be an integer")
 
     def test_illigal_dimension_values(self):
         """Tests for correct handling of illegal dimension values"""
-        with self.assertRaises(ValueError) as err:
+        with self.assertRaisesRegex(ValueError, "width must be > 0"):
             Rectangle(0, 5)
-            self.assertEqual(err.msg, "width must be > 0")
 
-        with self.assertRaises(ValueError) as err:
+        with self.assertRaisesRegex(ValueError, "width must be > 0"):
             Rectangle(-9, 5)
-            self.assertEqual(err.msg, "width must be > 0")
 
-        with self.assertRaises(ValueError) as err:
+        with self.assertRaisesRegex(ValueError, "height must be > 0"):
             Rectangle(5, 0)
-            self.assertEqual(err.msg, "height must be > 0")
 
-        with self.assertRaises(ValueError) as err:
+        with self.assertRaisesRegex(ValueError, "height must be > 0"):
             Rectangle(5, -9)
-            self.assertEqual(err.msg, "height must be > 0")
 
-        with self.assertRaises(ValueError) as err:
+        with self.assertRaisesRegex(ValueError, "width must be > 0"):
             Rectangle(-9, -10)
-            self.assertEqual(err.msg, "width must be > 0")
 
     def test_illegal_coordinate_types(self):
         """Tests for correct handling of illegal coordinate types"""
-        with self.assertRaises(TypeError) as err:
+        with self.assertRaisesRegex(TypeError, "x must be an integer"):
             Rectangle(1, 1, x="foo")
-            self.assertEqual(err, "x must be an integer")
 
-        with self.assertRaises(TypeError) as err:
+        with self.assertRaisesRegex(TypeError, "x must be an integer"):
             Rectangle(1, 1, x=None)
-            self.assertEqual(err, "x must be an integer")
 
-        with self.assertRaises(TypeError) as err:
+        with self.assertRaisesRegex(TypeError, "x must be an integer"):
             Rectangle(1, 1, x=float("inf"))
-            self.assertEqual(err, "x must be an integer")
 
-        with self.assertRaises(TypeError) as err:
+        with self.assertRaisesRegex(TypeError, "y must be an integer"):
             Rectangle(1, 1, y="foo")
-            self.assertEqual(err, "y must be an integer")
 
-        with self.assertRaises(TypeError) as err:
+        with self.assertRaisesRegex(TypeError, "y must be an integer"):
             Rectangle(1, 1, y=None)
-            self.assertEqual(err, "y must be an integer")
 
-        with self.assertRaises(TypeError) as err:
+        with self.assertRaisesRegex(TypeError, "y must be an integer"):
             Rectangle(1, 1, y=float("inf"))
-            self.assertEqual(err, "y must be an integer")
 
-        with self.assertRaises(TypeError) as err:
+        with self.assertRaisesRegex(TypeError, "x must be an integer"):
             Rectangle(1, 1, x=None, y=float("inf"))
-            self.assertEqual(err, "x must be an integer")
 
     def test_illegal_coordinate_values(self):
         """Tests for correct handling of illegal coordinate values"""
-        with self.assertRaises(ValueError) as err:
+        with self.assertRaisesRegex(ValueError, "x must be >= 0"):
             Rectangle(1, 1, x=-1)
-            self.assertEqual(err, "x must be >=0")
 
-        with self.assertRaises(ValueError) as err:
+        with self.assertRaisesRegex(ValueError, "y must be >= 0"):
             Rectangle(1, 1, y=-1)
-            self.assertEqual(err, "y must be >=0")
 
-        with self.assertRaises(ValueError) as err:
+        with self.assertRaisesRegex(ValueError, "x must be >= 0"):
             Rectangle(1, 1, x=-5, y=-1)
-            self.assertEqual(err, "x must be >=0")
 
     def test_area(self):
         """Tests the area instance method"""
@@ -188,3 +166,55 @@ class TestRectangleClass(unittest.TestCase):
 
         r3 = Rectangle(8, 7, 0, 0, 12)
         self.assertEqual(r3.area(), 56)
+
+    def test_str(self):
+        """Tests the builtin str function"""
+        r1 = Rectangle(3, 2)
+        self.assertEqual(str(r1), "[Rectangle] (1) 0/0 - 3/2")
+
+        r2 = Rectangle(4, 7, 2, 3, 47)
+        self.assertEqual(str(r2), "[Rectangle] (47) 2/3 - 4/7")
+
+    def test_update(self):
+        """Tests the update method"""
+        r1 = Rectangle(3, 2, 9, 5, 21)
+
+        r1.update(4)
+        self.assertEqual(r1.id, 4)
+
+        r1.update(4, 1, 6)
+        self.assertEqual(r1.width, 1)
+        self.assertEqual(r1.height, 6)
+
+        r1.update(4, 1, 6, 11, 13)
+        self.assertEqual(r1.x, 11)
+        self.assertEqual(r1.y, 13)
+
+        r1.update(5, 2, 7, 12, 15)
+        self.assertEqual(r1.id, 5)
+        self.assertEqual(r1.width, 2)
+        self.assertEqual(r1.height, 7)
+        self.assertEqual(r1.x, 12)
+        self.assertEqual(r1.y, 15)
+
+    def test_update_kwargs(self):
+        """Tests the update method with kwargs"""
+        r1 = Rectangle(1, 2, 3, 4)
+
+        r1.update(id=9)
+        self.assertEqual(r1.id, 9)
+        self.assertEqual(r1.width, 1)
+        self.assertEqual(r1.height, 2)
+        self.assertEqual(r1.x, 3)
+        self.assertEqual(r1.y, 4)
+
+        r1.update(x=7, width=5)
+        self.assertEqual(r1.x, 7)
+        self.assertEqual(r1.width, 5)
+
+        r1.update(y=11, x=21, width=1, id=100, height=98)
+        self.assertEqual(r1.id, 100)
+        self.assertEqual(r1.width, 1)
+        self.assertEqual(r1.height, 98)
+        self.assertEqual(r1.x, 21)
+        self.assertEqual(r1.y, 11)

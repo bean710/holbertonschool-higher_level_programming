@@ -27,8 +27,51 @@ class Rectangle(Base):
 
     def display(self):
         """Prints out the rectangle"""
+        for pos in range(self.y):
+            print("")
         for x in range(self.height):
-            print("#" * self.width)
+            print(" " * self.x + "#" * self.width)
+
+    def __str__(self):
+        """Prints a friendly version of the rectangle instance"""
+        return "[Rectangle] ({}) {}/{} - {}/{}".format(self.id, self.x,
+                                                       self.y, self.width,
+                                                       self.height)
+
+    def update(self, *args, **kwargs):
+        """Updates the rectangle instance given a variable number of args"""
+        if args is not None and len(args) != 0:
+            alen = len(args)
+
+            if alen >= 1:
+                self.id = args[0]
+
+            if alen >= 2:
+                self.width = args[1]
+
+            if alen >= 3:
+                self.height = args[2]
+
+            if alen >= 4:
+                self.x = args[3]
+
+            if alen >= 5:
+                self.y = args[4]
+        elif kwargs is not None and len(kwargs) != 0:
+            if "id" in kwargs:
+                self.id = kwargs["id"]
+
+            if "width" in kwargs:
+                self.width = kwargs["width"]
+
+            if "height" in kwargs:
+                self.height = kwargs["height"]
+
+            if "x" in kwargs:
+                self.x = kwargs["x"]
+
+            if "y" in kwargs:
+                self.y = kwargs["y"]
 
     @property
     def x(self):
