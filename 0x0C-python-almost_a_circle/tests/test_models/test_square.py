@@ -86,3 +86,15 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(s1.width, 5)
         self.assertEqual(s1.height, 5)
         self.assertEqual(s1.id, 23)
+
+    def test_dict(self):
+        """Tests the dictionary representation of a square"""
+        s1 = Square(4)
+        s1_dict = s1.to_dictionary()
+        s1_correct = {"id":1, "size":4, "x":0, "y":0}
+        self.assertEqual(s1_dict, s1_correct)
+
+        s2 = Square(9)
+        s2_new = {"id":9, "size":4, "x":3, "y":4}
+        s2.update(**s2_new)
+        self.assertEqual(s2.to_dictionary(), s2_new)

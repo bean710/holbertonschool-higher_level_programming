@@ -33,6 +33,10 @@ class Square(Rectangle):
                     fin[k] = v
             super().update(**fin)
 
+    def to_dictionary(self):
+        """Gets the dictionary representation of the square"""
+        return {"id":self.id, "size":self.size, "x":self.x, "y":self.y}
+
     @property
     def size(self):
         """Returns the size of the square"""
