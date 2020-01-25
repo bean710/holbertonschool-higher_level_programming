@@ -42,3 +42,47 @@ class TestSquare(unittest.TestCase):
 
         with self.assertRaisesRegex(TypeError, "width must be an integer"):
             s1.size = "foo"
+
+    def test_update(self):
+        """Tests the update method of square"""
+        s1 = Square(2)
+
+        s1.update(10)
+        self.assertEqual(s1.id, 10)
+
+        s1.update(10, 4)
+        self.assertEqual(s1.size, 4)
+        self.assertEqual(s1.width, 4)
+        self.assertEqual(s1.height, 4)
+
+        s1.update(10, 4, 9)
+        self.assertEqual(s1.x, 9)
+
+        s1.update(10, 4, 9, 7)
+        self.assertEqual(s1.y, 7)
+
+    def test_update_kwargs(self):
+        """Tests the update method with kwargs"""
+        s1 = Square(2)
+
+        s1.update(size=4)
+        self.assertEqual(s1.size, 4)
+        self.assertEqual(s1.width, 4)
+        self.assertEqual(s1.height, 4)
+
+        s1.update(id=31)
+        self.assertEqual(s1.id, 31)
+
+        s1.update(x=29)
+        self.assertEqual(s1.x, 29)
+
+        s1.update(y=47)
+        self.assertEqual(s1.y, 47)
+
+        s1.update(x=21, size=5, y=99, id=23)
+        self.assertEqual(s1.x, 21)
+        self.assertEqual(s1.y, 99)
+        self.assertEqual(s1.size, 5)
+        self.assertEqual(s1.width, 5)
+        self.assertEqual(s1.height, 5)
+        self.assertEqual(s1.id, 23)

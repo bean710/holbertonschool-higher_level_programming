@@ -14,6 +14,25 @@ class Square(Rectangle):
         return "[Square] ({}) {}/{} - {}".format(self.id, self.x, self.y,
                                                  self.width)
 
+    def update(self, *args, **kwargs):
+        """Updates the square"""
+        if args is not None and len(args) != 0:
+            fin = []
+            for arg in range(len(args)):
+                if arg == 1:
+                    fin.append(args[arg])
+                fin.append(args[arg])
+            super().update(*tuple(fin))
+        elif kwargs is not None and len(kwargs) != 0:
+            fin = {}
+            for k, v in kwargs.items():
+                if k == "size":
+                    fin["width"] = v
+                    fin["height"] = v
+                else:
+                    fin[k] = v
+            super().update(**fin)
+
     @property
     def size(self):
         """Returns the size of the square"""
@@ -22,4 +41,4 @@ class Square(Rectangle):
     @size.setter
     def size(self, value):
         """Sets the size (width, height) of the square"""
-        self.update(width=value, height=value)
+        super().update(width=value, height=value)
