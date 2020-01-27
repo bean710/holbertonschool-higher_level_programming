@@ -2,6 +2,9 @@
 """Module for testing the Base class"""
 import unittest
 from models.base import Base
+from models.rectangle import Rectangle
+from models.square import Square
+import json
 
 
 class TestBaseClass(unittest.TestCase):
@@ -26,3 +29,65 @@ class TestBaseClass(unittest.TestCase):
         self.assertEqual(b.id, 47)
         c = Base()
         self.assertEqual(c.id, 2)
+
+    def test_to_JSON(self):
+        """Tests the dictionary to JSON conversion"""
+        s1 = Square(3)
+        r1 = Rectangle(4, 5, 1, 2, 47)
+
+        ld = []
+        ld.append(s1.to_dictionary())
+        ld.append(r1.to_dictionary())
+        ld_json = r1.to_json_string(ld)
+        expected = [{"id":1, "size":3, "x":0, "y":0},
+                    {"id":47, "width":4, "height":5, "x":1, "y":2}]
+        expected_json = json.dumps(expected)
+
+        self.assertEqual(ld_json, expected_json)
+
+        self.assertEqual(s1.to_json_string(None), "[]")
+        self.assertEqual(s1.to_json_string([]), "[]")
+
+    def test_to_file(self):
+        """Tests that the JSON of an object can be written to a file"""
+        lo = []
+        lo.append(Rectangle(10, 7, 2, 8))
+        lo.append(Rectangle(2, 4))
+
+        Base.save_to_file(lo)
+
+        with open("Base.json") as f:
+            self.assertEqual(json.loads(f.read()),
+                             [x.to_dictionary() for x in lo])
+
+        Rectangle.save_to_file(None)
+        with open("Rectangle.json") as f:
+            self.assertEqual(f.read(), "[]")
+
+        Square.save_to_file([])
+        with open("Square.json") as f:
+            self.assertEqual(f.read(), "[]")
+
+    def test_from_json_to_dict(self):
+        """Tests the static method converting a json string to a dictionary"""
+        s1 = Square(3)
+        self.assertEqual([s1.to_dictionary()],
+                         s1.from_json_string(
+                             s1.to_json_string([s1.to_dictionary()])))
+
+        self.assertEqual(Base.from_json_string(""), [])
+        self.assertEqual(Base.from_json_string("[]"), [])
+        self.assertEqual(Base.from_json_string(None), [])
+
+    def test_from_dict_to_instance(self):
+        """Tests the class method to convert a dictionary to an instance"""
+        s1 = Square(3)
+        s1_dict = s1.to_dictionary()
+        s2 = Square.create(**s1_dict)
+        self.assertEqual(str(s1), str(s2))
+
+        self.assertIsNot(s1, s2)
+        self.assertNotEqual(s1, s2)
+
+    def test_from_file(self):
+        """Tests that a list of objects can be loaded from a file"""
