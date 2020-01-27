@@ -134,7 +134,7 @@ class Base():
             elif cls.__name__ == "Square":
                 for line in f.readlines():
                     sline = line.split(",")
-                    sline[-1] = sline[-1][:-2]
+                    sline[-1] = sline[-1][:-1]
                     sline = [int(x) for x in sline]
                     tdict = {"id": sline[0], "size": sline[1], "x": sline[2],
                              "y": sline[3]}
