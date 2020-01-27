@@ -58,8 +58,17 @@ class Rectangle(Base):
             if alen >= 5:
                 self.y = args[4]
         elif kwargs is not None and len(kwargs) != 0:
-            for k, v in kwargs.items():
-                setattr(self, k, v)
+            if "id" in kwargs:
+                self.id = kwargs["id"]
+            if "width" in kwargs:
+                self.width = kwargs["width"]
+            if "height" in kwargs:
+                self.height = kwargs["height"]
+            if "x" in kwargs:
+                self.x = kwargs["x"]
+            if "y" in kwargs:
+                self.y = kwargs["y"]
+
 
     def to_dictionary(self):
         """Gets the dictionary version of the rectangle"""
