@@ -45,7 +45,7 @@ class Base():
     @classmethod
     def create(cls, **dictionary):
         """Creates an instance of `cls` using the elements of `dictionary`"""
-        b1 = cls(2, 2)
+        b1 = cls(1) if cls.__name__ == "Square" else cls(1, 1)
         b1.update(**dictionary)
         return b1
 
@@ -122,25 +122,22 @@ class Base():
     def load_from_file_csv(cls):
         """Loads a list of instances from a CSV"""
         ret = []
-        try:
-            with open(cls.__name__ + ".csv", "r") as f:
-                if cls.__name__ == "Rectangle":
-                    for line in f.readlines():
-                        sline = line.split(",")
-                        sline[-1] = sline[-1][:-1]
-                        sline = [int(x) for x in sline]
-                        tdict = {"id": sline[0], "width": sline[1],
-                                 "height": sline[2], "x": sline[3], "y": sline[4]}
-                        ret.append(cls.create(**tdict))
-                elif cls.__name__ == "Square":
-                    for line in f.readlines():
-                        sline = line.split(",")
-                        sline[-1] = sline[-1][:-2]
-                        sline = [int(x) for x in sline]
-                        tdict = {"id": sline[0], "size": sline[2], "x": sline[3],
-                                 "y": sline[4]}
-                        ret.append(cls.create(**tdict))
-        except:
-            return ret
+        with open(cls.__name__ + ".csv", "r") as f:
+            if cls.__name__ == "Rectangle":
+                for line in f.readlines():
+                    sline = line.split(",")
+                    sline[-1] = sline[-1][:-1]
+                    sline = [int(x) for x in sline]
+                    tdict = {"id": sline[0], "width": sline[1],
+                             "height": sline[2], "x": sline[3], "y": sline[4]}
+                    ret.append(cls.create(**tdict))
+            elif cls.__name__ == "Square":
+                for line in f.readlines():
+                    sline = line.split(",")
+                    sline[-1] = sline[-1][:-2]
+                    sline = [int(x) for x in sline]
+                    tdict = {"id": sline[0], "size": sline[2], "x": sline[3],
+                             "y": sline[4]}
+                    ret.append(cls.create(**tdict))
 
         return ret
