@@ -45,6 +45,8 @@ class Base():
     @classmethod
     def create(cls, **dictionary):
         """Creates an instance of `cls` using the elements of `dictionary`"""
+        if cls.__name__ != "Rectangle" and cls.__name__ != "Square":
+            return
         b1 = cls(2, 2)
         b1.update(**dictionary)
         return b1
@@ -95,10 +97,13 @@ class Base():
     def load_from_file(cls):
         """Loads a list of class instances from a file"""
         ret = []
-        with open(cls.__name__ + ".json", "r") as f:
-            li = cls.from_json_string(f.read())
-            for di in li:
-                ret.append(cls.create(**di))
+        try:
+            with open(cls.__name__ + ".json", "r") as f:
+                li = cls.from_json_string(f.read())
+                for di in li:
+                    ret.append(cls.create(**di))
+        except:
+            return ret
 
         return ret
 
