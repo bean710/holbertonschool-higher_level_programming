@@ -26,6 +26,7 @@ class Base():
 
     @staticmethod
     def from_json_string(json_string):
+        """Loads a list of instances from a string"""
         if json_string is None or json_string == "[]" or json_string == "":
             return []
         return json.loads(json_string)
