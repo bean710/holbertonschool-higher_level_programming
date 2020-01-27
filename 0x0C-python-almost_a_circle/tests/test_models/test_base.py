@@ -89,5 +89,24 @@ class TestBaseClass(unittest.TestCase):
         self.assertIsNot(s1, s2)
         self.assertNotEqual(s1, s2)
 
+
+        r1 = Rectangle(3, 4)
+        r1_dict = r1.to_dictionary()
+        r2 = Rectangle.create(**r1_dict)
+        self.assertEqual(str(r1), str(r2))
+
+        self.assertIsNot(r1, r2)
+        self.assertNotEqual(r1, r2)
+
     def test_from_file(self):
         """Tests that a list of objects can be loaded from a file"""
+        r1 = Rectangle(10, 7, 2, 8)
+        r2 = Rectangle(2, 4)
+        list_rects = [r1, r2]
+
+        Rectangle.save_to_file(list_rects)
+
+        new_rects = Rectangle.load_from_file()
+
+        self.assertEqual(str(r1), str(new_rects[0]))
+        self.assertEqual(str(r2), str(new_rects[1]))

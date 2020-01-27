@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 """This module contains a base class for all shape objects"""
 import json
+import turtle
+import random as rand
 
 
 class Base():
@@ -45,3 +47,56 @@ class Base():
         b1 = cls(2, 2)
         b1.update(**dictionary)
         return b1
+
+    @staticmethod
+    def draw(list_rectangles, list_squares):
+        """Draws the rectangles and squares using turtles"""
+        turt = turtle.Turtle()
+        colormode = turt.getscreen().colormode()
+
+        for rect in list_rectangles:
+            color = (rand.random() * colormode,
+                          rand.random() * colormode,
+                          rand.random() * colormode)
+            turt.color(color, color)
+            turt.begin_fill()
+            turt.setposition(rect.x, rect.y)
+            turt.pendown()
+            turt.forward(rect.width)
+            turt.right(90)
+            turt.forward(rect.height)
+            turt.right(90)
+            turt.forward(rect.width)
+            turt.right(90)
+            turt.forward(rect.height)
+            turt.right(90)
+            turt.end_fill()
+            turt.color("black", "black")
+            turt.penup()
+            turt.setpos(rect.x + rect.width / 2, rect.y - rect.height / 2)
+            turt.write(rect.id)
+
+        for square in list_squares:
+            color = (rand.random() * colormode,
+                     rand.random() * colormode,
+                     rand.random() * colormode)
+            turt.color(color, color)
+            turt.setposition(square.x, square.y)
+            turt.pendown()
+            for x in range(4):
+                turt.forward(square.size)
+                turt.right(90)
+            turt.penup()
+
+        turtle.done()
+
+    @classmethod
+    def load_from_file(cls):
+        """Loads a list of class instances from a file"""
+        ret = []
+        with open(cls.__name__ + ".json", "r") as f:
+            li = cls.from_json_string(f.read())
+            for di in li:
+                ret.append(cls.create(**di))
+
+        return ret
