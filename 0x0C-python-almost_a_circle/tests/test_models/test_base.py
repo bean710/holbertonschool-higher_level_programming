@@ -89,7 +89,6 @@ class TestBaseClass(unittest.TestCase):
         self.assertIsNot(s1, s2)
         self.assertNotEqual(s1, s2)
 
-
         r1 = Rectangle(3, 4)
         r1_dict = r1.to_dictionary()
         r2 = Rectangle.create(**r1_dict)

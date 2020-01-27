@@ -34,6 +34,11 @@ class TestRectangleClass(unittest.TestCase):
         e = Rectangle(width=1, height=1, x=3, y=4, id=29)
         self.assertEqual(type(e), Rectangle)
 
+        with self.assertRaisesRegex(TypeError, "missing 2 required positional arguments"):
+            f = Rectangle()
+        with self.assertRaisesRegex(TypeError, "missing 1 required positional argument"):
+            f = Rectangle(1)
+
     def test_id(self):
         """Tests that the correct IDs are being assigned"""
         a = Rectangle(1, 1)
