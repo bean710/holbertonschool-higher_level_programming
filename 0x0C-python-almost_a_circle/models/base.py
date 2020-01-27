@@ -56,8 +56,8 @@ class Base():
 
         for rect in list_rectangles:
             color = (rand.random() * colormode,
-                          rand.random() * colormode,
-                          rand.random() * colormode)
+                     rand.random() * colormode,
+                     rand.random() * colormode)
             turt.color(color, color)
             turt.begin_fill()
             turt.setposition(rect.x, rect.y)
@@ -108,11 +108,11 @@ class Base():
             for inst in list_objs:
                 if cls.__name__ == "Rectangle":
                     f.write("{},{},{},{},{}\n".format(inst.id, inst.width,
-                                                        inst.height, inst.x,
-                                                        inst.y))
+                                                      inst.height, inst.x,
+                                                      inst.y))
                 elif cls.__name__ == "Square":
                     f.write("{},{},{},{}\n".format(inst.id, inst.size,
-                                                        inst.x, inst.y))
+                                                   inst.x, inst.y))
 
     @classmethod
     def load_from_file_csv(cls):
@@ -124,16 +124,16 @@ class Base():
                     sline = line.split(",")
                     sline[-1] = sline[-1][:-1]
                     sline = [int(x) for x in sline]
-                    tdict = {"id":sline[0], "width":sline[1],
-                             "height":sline[2], "x":sline[3], "y":sline[4]}
+                    tdict = {"id": sline[0], "width": sline[1],
+                             "height": sline[2], "x": sline[3], "y": sline[4]}
                     ret.append(cls.create(**tdict))
             elif cls.__name__ == "Square":
                 for line in f.readlines():
                     sline = line.split(",")
                     sline[-1] = sline[-1][:-2]
                     sline = [int(x) for x in sline]
-                    tdict = {"id":sline[0], "size":sline[2], "x":sline[3],
-                             "y":sline[4]}
+                    tdict = {"id": sline[0], "size": sline[2], "x": sline[3],
+                             "y": sline[4]}
                     ret.append(cls.create(**tdict))
 
         return ret
