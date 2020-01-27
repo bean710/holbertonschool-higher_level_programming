@@ -136,8 +136,8 @@ class Base():
                     sline = line.split(",")
                     sline[-1] = sline[-1][:-2]
                     sline = [int(x) for x in sline]
-                    tdict = {"id": sline[0], "size": sline[2], "x": sline[3],
-                             "y": sline[4]}
+                    tdict = {"id": sline[0], "size": sline[1], "x": sline[2],
+                             "y": sline[3]}
                     ret.append(cls.create(**tdict))
 
         return ret
