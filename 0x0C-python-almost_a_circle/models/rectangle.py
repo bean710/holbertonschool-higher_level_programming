@@ -75,8 +75,8 @@ class Rectangle(Base):
 
     def to_dictionary(self):
         """Gets the dictionary version of the rectangle"""
-        return {"id":self.id, "width":self.width, "height":self.height,
-                "x":self.x, "y":self.y}
+        return {"id": self.id, "width": self.width, "height": self.height,
+                "x": self.x, "y": self.y}
 
     @property
     def x(self):
