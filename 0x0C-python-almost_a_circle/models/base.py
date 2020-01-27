@@ -100,3 +100,40 @@ class Base():
                 ret.append(cls.create(**di))
 
         return ret
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """Saves a list of instances to a CSV file"""
+        with open(cls.__name__ + ".csv", "w") as f:
+            for inst in list_objs:
+                if cls.__name__ == "Rectangle":
+                    f.write("{},{},{},{},{}\n".format(inst.id, inst.width,
+                                                        inst.height, inst.x,
+                                                        inst.y))
+                elif cls.__name__ == "Square":
+                    f.write("{},{},{},{}\n".format(inst.id, inst.size,
+                                                        inst.x, inst.y))
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """Loads a list of instances from a CSV"""
+        ret = []
+        with open(cls.__name__ + ".csv", "r") as f:
+            if cls.__name__ == "Rectangle":
+                for line in f.readlines():
+                    sline = line.split(",")
+                    sline[-1] = sline[-1][:-1]
+                    sline = [int(x) for x in sline]
+                    tdict = {"id":sline[0], "width":sline[1],
+                             "height":sline[2], "x":sline[3], "y":sline[4]}
+                    ret.append(cls.create(**tdict))
+            elif cls.__name__ == "Square":
+                for line in f.readlines():
+                    sline = line.split(",")
+                    sline[-1] = sline[-1][:-2]
+                    sline = [int(x) for x in sline]
+                    tdict = {"id":sline[0], "size":sline[2], "x":sline[3],
+                             "y":sline[4]}
+                    ret.append(cls.create(**tdict))
+
+        return ret

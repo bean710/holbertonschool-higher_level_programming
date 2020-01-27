@@ -110,3 +110,15 @@ class TestBaseClass(unittest.TestCase):
 
         self.assertEqual(str(r1), str(new_rects[0]))
         self.assertEqual(str(r2), str(new_rects[1]))
+
+    def test_csv_save(self):
+        """Tests that an instance can be saved as CSV"""
+        r1 = Rectangle(3, 4, 2, 2, 99)
+        r2 = Rectangle(2, 9)
+        r_list = [r1, r2]
+
+        Rectangle.save_to_file_csv(r_list)
+        new_rects = Rectangle.load_from_file_csv()
+
+        self.assertEqual(str(r1), str(new_rects[0]))
+        self.assertEqual(str(r2), str(new_rects[1]))
