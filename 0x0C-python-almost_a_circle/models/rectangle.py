@@ -69,7 +69,6 @@ class Rectangle(Base):
             if "y" in kwargs:
                 self.y = kwargs["y"]
 
-
     def to_dictionary(self):
         """Gets the dictionary version of the rectangle"""
         return {"id": self.id, "width": self.width, "height": self.height,
