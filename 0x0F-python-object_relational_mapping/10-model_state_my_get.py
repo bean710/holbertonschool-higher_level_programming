@@ -17,7 +17,7 @@ if __name__ == "__main__":
     session = Session()
 
     state = (session.query(State).order_by(State.id)
-              .filter(State.name == sys.argv[4]).first())
+             .filter(State.name == sys.argv[4]).first())
 
     if state is not None:
         print("{}".format(state.id))
