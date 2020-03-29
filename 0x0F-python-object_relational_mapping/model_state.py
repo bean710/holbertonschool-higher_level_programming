@@ -7,6 +7,7 @@ from sqlalchemy import Column, Integer, String
 
 Base = declarative_base()
 
+
 class State(Base):
     """ This class is a State class to interact with the ORM"""
     __tablename__ = "states"
