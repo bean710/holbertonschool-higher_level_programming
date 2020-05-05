@@ -10,6 +10,8 @@ function secondLargest (arr) {
     if (num >= max) {
       res = max;
       max = num;
+    } else if (num > res) {
+      res = num;
     }
   }
 
