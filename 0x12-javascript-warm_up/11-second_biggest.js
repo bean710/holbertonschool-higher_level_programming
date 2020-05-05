@@ -7,7 +7,7 @@ function secondLargest (arr) {
   let res = -Infinity;
 
   for (const num of arr) {
-    if (num > max) {
+    if (num >= max) {
       res = max;
       max = num;
     }
