@@ -1,15 +1,9 @@
 #!/usr/bin/node
 
 function fac (n) {
-  if (isNaN(n)) n = 1;
+  if (isNaN(n) || n === 1) return 1;
 
-  let total = n;
-
-  for (n--; n > 0; n--) {
-    total *= n;
-  }
-
-  return total;
+  return n * fac(n - 1);
 }
 
 console.log(fac(Number(process.argv[2])));
