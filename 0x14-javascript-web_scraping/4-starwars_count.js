@@ -9,8 +9,9 @@ request(url, (err, res, body) => {
   const results = JSON.parse(body).results;
 
   let total = 0;
+  const waurl = 'https://swapi-api.hbtn.io/api/people/18/';
   for (let i = 0; i < results.length; i++) {
-    if (results[i].characters.includes('https://swapi-api.hbtn.io/api/people/18/')) {
+    if (results[i].characters.includes(waurl)) {
       total++;
     }
   }
