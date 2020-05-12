@@ -11,7 +11,7 @@ async function main () {
     const out = await readFile(file1);
     process.stdout.write(out.toString());
   } catch (e) {
-    console.error(`Error reading the file: ${e}`);
+    console.error(e);
   }
 }
 
