@@ -8,7 +8,7 @@ const file1 = process.argv.slice(2)[0];
 
 async function main () {
   try {
-    out = await util.promisify(fs.readFile)(file1);
+    const out = await readFile(file1);
     process.stdout.write(out.toString());
   } catch (e) {
     console.error(`Error reading the file: ${e}`);
