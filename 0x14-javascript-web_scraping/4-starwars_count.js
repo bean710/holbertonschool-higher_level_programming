@@ -4,7 +4,7 @@ const request = require('request');
 const [url] = process.argv.slice(2);
 
 request(url, (err, res, body) => {
-  if (err) return;
+  if (err || res.statusCode !== 200) return;
 
   const results = JSON.parse(body).results;
 
